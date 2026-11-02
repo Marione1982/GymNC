@@ -20,7 +20,8 @@ URL del progetto e chiave publishable di Supabase sono nel codice (`DEFAULT_CFG`
 - Progetto "GymNC" (ref `lnuqmirkefccyrrrqslm`, regione eu-west-1).
 - Tabella `workout_sessions`: `id` uuid, `user_id` (default `auth.uid()`), `performed_on` date, `split_name`, `notes`, `exercises` jsonb (sempre un array), `created_at`. Indice su `(user_id, performed_on desc, created_at desc)`.
 - RLS attiva: il proprietario può leggere, inserire ed eliminare le proprie sessioni. Non c'è nessun permesso di modifica (`update`): per modificare una sessione servono policy e grant nuovi.
-- Su Supabase non risulta nessuna migrazione registrata: lo schema è stato applicato dal SQL Editor.
+- Permessi di tabella: `anon` nessuno; `authenticated` solo select, insert, delete.
+- Lo schema iniziale fu applicato dal SQL Editor; la prima migrazione registrata è `restringe_permessi_workout_sessions` (2 novembre 2026).
 
 ## Regole di lavoro
 - Prima di cambiare il database, leggi lo stato reale. Mostra l'SQL e aspetta conferma prima di applicarlo.

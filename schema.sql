@@ -32,4 +32,6 @@ create policy "Users can delete their own workouts"
   on public.workout_sessions for delete to authenticated
   using ((select auth.uid()) = user_id);
 
+revoke all on public.workout_sessions from anon;
+revoke all on public.workout_sessions from authenticated;
 grant select, insert, delete on public.workout_sessions to authenticated;
