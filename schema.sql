@@ -32,6 +32,14 @@ create policy "Users can delete their own workouts"
   on public.workout_sessions for delete to authenticated
   using ((select auth.uid()) = user_id);
 
+drop policy if exists "Users can update their own workouts" on public.workout_sessions;
+create policy "Users can update their own workouts"
+  on public.workout_sessions for update to authenticated
+  using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
+
 revoke all on public.workout_sessions from anon;
 revoke all on public.workout_sessions from authenticated;
 grant select, insert, delete on public.workout_sessions to authenticated;
+-- La modifica è limitata alle colonne del contenuto: il proprietario non si cambia.
+grant update (performed_on, split_name, notes, exercises) on public.workout_sessions to authenticated;

@@ -3,6 +3,12 @@
 ## Cos'è
 Diario di allenamento personale per telefono e computer, basato sulla scheda Push / Pull / Legs del repository `Gym` (la versione precedente). Registra una sessione con data, esercizi, serie, ripetizioni, carichi e note; storico e andamento dei carichi si sincronizzano con Supabase. Il riepilogo settimanale conta da lunedì a domenica.
 
+- Guide degli esercizi in `EXERCISE_GUIDES` (chiave = nome dell'esercizio, confronto senza maiuscole): `fig`, `tag`, `muscles`, `setup`, `steps`, `errors`. Un esercizio senza guida mostra solo un avviso e il link YouTube.
+- Illustrazioni generate da `FIG`: figura costruita dagli angoli delle articolazioni (vista laterale `side` o frontale `front`), con attrezzo (`s`), carico (`g`) e frecce di movimento (`m`) per le due fasi INIZIO e FINE.
+- Avviando un giorno, serie, ripetizioni e carichi vengono dall'ultima sessione dello stesso giorno (più gli esercizi aggiunti in quella sessione); senza sessioni precedenti si usano i valori di `PLAN`.
+- Timer di recupero da 60 secondi (`REST_SECONDS`) nella schermata Allenamento, con suono e vibrazione alla fine.
+- Le sessioni nello storico si possono modificare: il modulo passa in modalità modifica e salva con un `update`.
+
 ## Stack
 - Un solo file `index.html` con HTML, CSS e JavaScript inline. Nessun build.
 - `@supabase/supabase-js` v2 caricato da CDN.
@@ -19,9 +25,9 @@ URL del progetto e chiave publishable di Supabase sono nel codice (`DEFAULT_CFG`
 ## Supabase
 - Progetto "GymNC" (ref `lnuqmirkefccyrrrqslm`, regione eu-west-1).
 - Tabella `workout_sessions`: `id` uuid, `user_id` (default `auth.uid()`), `performed_on` date, `split_name`, `notes`, `exercises` jsonb (sempre un array), `created_at`. Indice su `(user_id, performed_on desc, created_at desc)`.
-- RLS attiva: il proprietario può leggere, inserire ed eliminare le proprie sessioni. Non c'è nessun permesso di modifica (`update`): per modificare una sessione servono policy e grant nuovi.
-- Permessi di tabella: `anon` nessuno; `authenticated` solo select, insert, delete.
-- Lo schema iniziale fu applicato dal SQL Editor; la prima migrazione registrata è `restringe_permessi_workout_sessions` (2 novembre 2026).
+- RLS attiva: il proprietario può leggere, inserire, modificare ed eliminare le proprie sessioni.
+- Permessi di tabella: `anon` nessuno; `authenticated` select, insert, delete e update solo sulle colonne `performed_on`, `split_name`, `notes`, `exercises`.
+- Lo schema iniziale fu applicato dal SQL Editor; migrazioni registrate: `restringe_permessi_workout_sessions` e `permette_modifica_workout_sessions` (2 novembre 2026).
 
 ## Regole di lavoro
 - Prima di cambiare il database, leggi lo stato reale. Mostra l'SQL e aspetta conferma prima di applicarlo.
