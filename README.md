@@ -12,16 +12,13 @@ Diario allenamenti per telefono e computer, basato sulla scheda Push / Pull / Le
 
 GitHub Pages è gratuito per repository pubbliche con GitHub Free. Il codice del sito è pubblico; allenamenti ed account non sono contenuti nel codice.
 
-## Attiva la sincronizzazione privata
+## Sincronizzazione
 
-1. In Supabase crea un nuovo progetto con il piano **Free**.
-2. Apri **SQL Editor**, crea una query e copia il contenuto di `schema.sql`; esegui la query.
-3. In Supabase apri **Project Settings → API Keys** e copia il **Project URL** e la chiave **Publishable** (oppure la chiave legacy `anon`). Non copiare mai `service_role` o `secret`.
-4. Apri GymNC sul dispositivo e premi l’ingranaggio. Incolla URL e chiave pubblica e salva.
-5. Premi **Accedi → Crea un account**, usa la tua email e una password. Se Supabase richiede la conferma, apri l’email e poi accedi.
-6. Su ogni altro dispositivo ripeti solo la configurazione URL/chiave e accedi con lo stesso account.
+GymNC è già collegato al suo progetto Supabase: URL e chiave pubblica (publishable) sono nel codice. Su qualsiasi dispositivo basta aprire il sito e premere **Accedi** con la propria email e password.
 
-L’URL e la chiave pubblica vengono salvati solo nel browser del dispositivo. I dati degli allenamenti sono salvati nel database Supabase; le regole RLS in `schema.sql` consentono a ciascun account di leggere, inserire ed eliminare solo le proprie sessioni.
+La chiave publishable è pubblica per natura: i dati sono protetti dal login e dalle regole RLS in `schema.sql`, che consentono a ciascun account di leggere, inserire ed eliminare solo le proprie sessioni. Non mettere mai nel codice `service_role` o chiavi `secret`.
+
+Dall’ingranaggio si può impostare un progetto Supabase diverso; quei valori restano solo nel browser del dispositivo.
 
 ## Piano gratuito
 

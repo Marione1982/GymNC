@@ -14,7 +14,7 @@ Diario di allenamento personale per telefono e computer, basato sulla scheda Pus
 - `README.md`: guida alla pubblicazione e alla configurazione.
 
 ## Configurazione
-URL del progetto e chiave publishable di Supabase non sono nel codice: si inseriscono dall'ingranaggio dell'app e restano solo nel browser del dispositivo (localStorage). Non vanno mai committate.
+URL del progetto e chiave publishable di Supabase sono nel codice (`DEFAULT_CFG` in `index.html`): la chiave publishable è pubblica per natura e i dati sono protetti dal login e dalla RLS. Così basta accedere da qualsiasi dispositivo. Dall'ingranaggio si può ancora impostare un altro progetto, salvato solo nel browser (localStorage). Mai `service_role` o chiavi `secret` nel codice.
 
 ## Supabase
 - Progetto "GymNC" (ref `lnuqmirkefccyrrrqslm`, regione eu-west-1).
