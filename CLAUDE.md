@@ -5,7 +5,7 @@ Diario di allenamento personale per telefono e computer, basato sulla scheda Pus
 
 - Guide degli esercizi in `EXERCISE_GUIDES` (chiave = nome dell'esercizio, confronto senza maiuscole): `fig`, `tag`, `muscles`, `setup`, `steps`, `errors`. Un esercizio senza guida mostra solo un avviso e il link YouTube.
 - Illustrazioni generate da `FIG`: figura costruita dagli angoli delle articolazioni (vista laterale `side` o frontale `front`), con attrezzo (`s`), carico (`g`) e frecce di movimento (`m`) per le due fasi INIZIO e FINE.
-- Avviando un giorno, serie, ripetizioni e carichi vengono dall'ultima sessione dello stesso giorno (più gli esercizi aggiunti in quella sessione); senza sessioni precedenti si usano i valori di `PLAN`.
+- Avviando un giorno, serie, ripetizioni e carichi vengono dall'ultima sessione dello stesso giorno (più gli esercizi aggiunti in quella sessione); senza sessioni precedenti si usano i valori di `PLAN`. Gli esercizi tolti dalla scheda vanno in `RETIRED_EXERCISES`, così non vengono riproposti dall'ultima sessione (es. "Calf Raise manubrio", sostituito il 6 novembre 2026 da "Calf Raise alla Leg Press").
 - Timer di recupero da 60 secondi (`REST_SECONDS`) nella schermata Allenamento, con suono e vibrazione alla fine.
 - Le sessioni nello storico si possono modificare: il modulo passa in modalità modifica e salva con un `update`.
 - Nello storico carico, serie e ripetizioni sono in giallo (`history-changed`) quando differiscono dall'ultima volta precedente in cui è stato fatto lo stesso esercizio; la prima volta si confronta con `PLAN`. Il nome dell'esercizio è giallo se è cambiato almeno un valore o se il RIR è maggiore di 0.
