@@ -8,6 +8,7 @@ Diario di allenamento personale per telefono e computer, basato sulla scheda Pus
 - Avviando un giorno, serie, ripetizioni e carichi vengono dall'ultima sessione dello stesso giorno (più gli esercizi aggiunti in quella sessione); senza sessioni precedenti si usano i valori di `PLAN`.
 - Timer di recupero da 60 secondi (`REST_SECONDS`) nella schermata Allenamento, con suono e vibrazione alla fine.
 - Le sessioni nello storico si possono modificare: il modulo passa in modalità modifica e salva con un `update`.
+- Nello storico carico, serie e ripetizioni sono in giallo (`history-changed`) quando differiscono dall'ultima volta precedente in cui è stato fatto lo stesso esercizio; la prima volta si confronta con `PLAN`. Il nome dell'esercizio è giallo se è cambiato almeno un valore o se il RIR è maggiore di 0.
 
 ## Stack
 - Un solo file `index.html` con HTML, CSS e JavaScript inline. Nessun build.
